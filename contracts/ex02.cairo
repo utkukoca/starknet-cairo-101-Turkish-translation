@@ -1,19 +1,19 @@
 ######### Ex 02
-## Understanding asserts
-# In this exercice, you need to:
-# - Use this contract's claim_points() function
-# - Your points are credited by the contract
+## Assertleri anlamak
+# Bu alıştırmada yapmanız gerekenler:
+# - Bu sözleşmenin request_points() fonksiyonunu kullanın
+# - Puanlarınız sözleşme tarafından gönderilir.
 
-## What you'll learn
-# - Using asserts
-# - How to declare storage variables
-# - How to read storage variables
-# - How to create getter functions
-# Asserts are a basic building bloc allowing you to verify that two values are the same. 
-# They are similar to require() in Solidity
-# More information about basic storage https://www.cairo-by-example.com/basics/storage
+## Neleri öğreneceksiniz
+# - Assertleri kullanmak
+# - Depolama değişkenleri nasıl bildirilir
+# - Depolama değişkenleri nasıl okunur
+# - Alıcı işlevleri nasıl oluşturulur
+# Assertler, iki değerin aynı olduğunu doğrulamanıza izin veren temel bir yapı taşıdır.
+# Solidity'de require() işlevine benzerler
+# Temel depolama hakkında daha fazla bilgi https://www.cairo-by-example.com/basics/storage
 
-######### General directives and imports
+######### Genel yönergeler ve içe aktarmalar
 #
 #
 
@@ -31,19 +31,19 @@ from contracts.utils.ex00_base import (
 )
 
 #
-# Declaring storage vars
-# Storage vars are by default not visible through the ABI. They are similar to "private" variables in Solidity
+# Depolama değişkenlerinin bildirilmesi
+# Depolama değişkenleri varsayılan olarak ABI aracılığıyla görünmez. Solidity'deki "özel" değişkenlere benzerler
 #
-# This variable is a felt and is called my_secret_value_storage
-# From within a smart contract, it can be read with my_secret_value_storage.read() or written to with my_secret_value_storage.write()
+# Bu değişken "felt" dir ve "my_secret_value_storage" olarak isimlendirilir
+# Akıllı sözleşmeden, my_secret_value_storage.read() aracılığıyla okunabilir veya my_secret_value_storage.write() sayesinde yazılabilir.
 
 @storage_var
 func my_secret_value_storage() -> (my_secret_value_storage: felt):
 end
 
 #
-# Declaring getters
-# Public variables should be declared explicitly with a getter
+# Alıcıları bildirme
+# Genel değişkenler bir alıcı ile açıkça bildirilmelidir
 #
 
 
@@ -54,7 +54,7 @@ func my_secret_value{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
 end
 
 ######### Constructor
-# This function is called when the contract is deployed
+# Bu işlev, sözleşme dağıtıldığında bir seferliğine çağrılır.
 #
 @constructor
 func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
@@ -70,21 +70,21 @@ func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
 end
 
 ######### External functions
-# These functions are callable by other contracts
+# # Bu fonksiyonlar başka kontratlar tarafından çağrılabilir
 #
 
 @external
 func claim_points{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(my_value: felt):
-    # Reading caller address
+    # Fonksiyonu çağıran cüzdan adresini okur.
     let (sender_address) = get_caller_address()
-    # Reading stored value from storage
+    # Depoda depolanan değeri okuma
     let (my_secret_value) = my_secret_value_storage.read()
-    # Checking that the value sent is correct
-    # Using assert this way is similar to using "require" in Solidity
+    # Gönderilen değerin doğru olup olmadığı kontrol ediliyor
+    # Assert'i bu şekilde kullanmak, Solidity'de "require" kullanmaya benzer
     assert my_value = my_secret_value
-    # Checking if the user has validated the exercice before
+    # Kullanıcının alıştırmayı daha önce yapıp yapmadığını kontrol etme
     validate_exercise(sender_address)
-    # Sending points to the address specified as parameter
+    # Girilen adrese puanları "tokenları" gönderir.
     distribute_points(sender_address, 2)
     return ()
 end
