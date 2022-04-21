@@ -1,88 +1,90 @@
 # StarkNet Cairo 101
-**Get started with Cairo with this simple tutorial. 
-Complete the puzzles/exercises, get tokens and learn about StarkNet smart contracts!**
+**Bu basit eğitimle Cairo kullanmaya başlayın. 
+Bulmacaları/egzersizleri tamamlayın, egzersizleri yaptıkça token kazanın ve StarkNet akıllı sözleşmeleri hakkında bilgi edinin!​**
 ​
-## Introduction
-### Disclaimer
+  ## Giriş
+### Sorumluluk reddi
 ​
-Don't expect any kind of benefit from using this, other than learning a bunch of cool stuff about StarkNet, the first general purpose validity rollup on the Ethereum Mainnnet.
+Ethereum Mainnet'teki "ilk genel amaçlı validity rollup olan StarkNet" hakkında bir sürü harika şey öğrenmek dışında, bunu kullanmaktan herhangi bir fayda beklemeyin.
 ​
-StarkNet is still in Alpha. This means that development is ongoing, and the paint is not dry everywhere. Things will get better, and in the meanwhile, we make things work with a bit of duct tape here and there!
+StarkNet hala Alfa'da. Bu, geliştirmenin devam ettiği ve boyanın her yerde kurumadığı (son sürüm olmadığı) anlamına gelir. İşler daha iyi olacak ve bu arada, burada ve orada biraz koli bandıyla işleri yürütüyoruz!
 ​
-## How it works
+## Nasıl çalışır
 ​
-**Complete the exercises and get tokens!**
-This workshop is a set of smart contracts deployed on StarkNet Alpha on testnet. 
-Each smart contract is an exercice/puzzle - which outlines a feature of the Cairo Smart contract language. 
-Completing the exercice will credit you with points, in the form of an [ERC20 token](contracts/token/TDERC20.cairo).
+**Alıştırmaları bitir tokenları al!**
+Bu atölye, testnet'te "StarkNet Alpha'da" bulunan bir dizi akıllı sözleşmedir.
+Her akıllı sözleşme, Cairo Akıllı sözleşme dilinin bir özelliğini anlatan/özetleyen bir alıştırma/bulmacadır.
+Alıştırmayı tamamlamak, size token şeklinde kredi verecektir [ERC20 token](contracts/token/TDERC20.cairo).
 ​
-This workshop focuses on *reading* Cairo code and StarkNet smart contracts, in order to understand its syntax. 
-You do not need to code or install anything on your machine in order to follow and complete it. 
+Bu atölye, sözdizimini anlamak için Cairo kodunu ve StarkNet akıllı sözleşmelerini *okumaya* odaklanır.
+Takip etmek ve tamamlamak için makinenize herhangi bir kod yazmanıza veya herhangi bir şey yüklemenize gerek yoktur.
 ​
-Getting started (doing the first two exercises) will take you some time, in order to get into the tutorial. Hang on! Once there, things will flow more easily. You're learning!
+Başlamak (ilk iki alıştırmayı yapmak) öğreticiyi anlamak için biraz zaman alacaktır. Hatta beklemek! Bir kez orada, işler daha kolay akacak. Öğreniyorsun!
 ​
-This workshop is the first in a serie that will cover broad smart contract concepts (writing and deploying ERC20/ERC721, bridging assets, L1 <-> L2 messaging...). 
-Interested in helping writing those? [Reach out](https://twitter.com/HenriLieutaud)!
+u atölye, geniş akıllı sözleşme kavramlarını (ERC20/ERC721 yazma ve dağıtma, varlıklar arasında köprü oluşturma, L1 <-> L2 mesajlaşma...) kapsayacak bir serinin ilkidir.
+Bunları yazmakla ilgileniyor musunuz?[Reach out](https://twitter.com/HenriLieutaud)!
 ​
-### Providing feedback
-Once you are done working on this tutorial, your feedback would be greatly appreciated! 
-**Please fill [this form](https://forms.reform.app/starkware/untitled-form-4/kaes2e) to let us know what we can do to make it better.** 
+### Geri bildirim sağlama
+Bu öğretici üzerinde çalışmayı bitirdikten sonra, geri bildiriminiz çok takdir edilecektir!
+**Daha iyi hale getirmek için ne yapacağımızı bilmemiz için lütfen bu formu doldurun [bu formu](https://forms.reform.app/starkware/untitled-form-4/kaes2e).** 
 ​
-And if you struggle to move forward, do let us know! This workshop is meant to be as accessible as possible; we want to know if it's not the case.
+Ve ilerlemekte zorlanıyorsanız, bize bildirin! Bu eğitimin mümkün olduğu kadar erişilebilir olması amaçlanmıştır;eğer değilse öyle olmadığını bilmek istiyoruz.
 ​
-Do you have a question? Join our [Discord server](https://discord.gg/B7PevJGCCw), register and join channel #tutorials-support
+Sorunuz mu var? Katılın --> [Discord server](https://discord.gg/B7PevJGCCw), kayıt olun and kanala katılın #tutorials-support
 ​
-## Getting started
+## Başlarken
 ​
-### Creating an account contract
-**In order to complete the tutorial you need to collect points.** These points will be owned by a smart contract wallet, that you need to deploy.
--   The easiest way to set one up is currently to use Argent X ([download the chrome extension](https://chrome.google.com/webstore/detail/argent-x-starknet-wallet/dlcobpjiigpikoobohmabehhmhfoodbb/)  or  [check their repo](https://github.com/argentlabs/argent-x)).
--   Follow the instructions to install the extension and deploy an account contract
--   Make sure you are on the Goerli testnet network
--   The tutorial's points are held in contract  `0x074002c7df47096f490a1a89b086b8a468f2e7c686e04a024d93b7c59f934f83`. Click on "add token" in Argent X to get your points balance to show up there!
-- Connect Voyager to your account contract! This will allow you to broadast your transactions through your wallet.
+### Cüzdan kontratı oluşturun.
+**Eğitimi tamamlamak için puan toplamanız gerekiyor.** Bu puanlar, yüklemeniz gereken bir akıllı sözleşme cüzdanına ait olacaktır.
+-   Şu an bunu oluşturmanın en kolay yolu Argent X kullanmaktır ([download the chrome extension](https://chrome.google.com/webstore/detail/argent-x-starknet-wallet/dlcobpjiigpikoobohmabehhmhfoodbb/)  veya  [check their repo](https://github.com/argentlabs/argent-x)).
+-   Uzantıyı yüklemek ve bir cüzdan sözleşmesi dağıtmak için talimatları izleyin
+-   Goerli testnet network'de olduğunuzdan emin olun.
+-   Eğitimin puanları `0x074002c7df47096f490a1a89b086b8a468f2e7c686e04a024d93b7c59f934f83` sözleşmesinde tutulur. Puan bakiyenizin orada görünmesini sağlamak için Argent X'te "token ekle"ye tıklayın!
+- Voyager'ı hesap sözleşmenize bağlayın! Bu, işlemlerinizi cüzdanınız aracılığıyla yayınlamanıza olanak tanır.
 ​
-### Using voyager
-For this tutorial we'll interact with our contracts through [Voyager](https://goerli.voyager.online/), StarkNet's block explorer. 
+### Voyager'ı kullanma
+Bu eğitim için sözleşmelerimizle [Voyager](https://goerli.voyager.online/) ile etkileşimde bulunacağız. StarkNet's block explorer. 
 
--> Connect Voyager to your account contract! This will allow you to broadast your transactions through your wallet.
+-> Voyager'ı cüzdanınıza bağlayın! Bu, işlemlerinizi cüzdanınız aracılığıyla yayınlamanıza olanak tanır.
 
-When looking for a contract / transaction, always make sure you are on the Goerli version of Voyager!
--   Access your transactions with URL  [https://goerli.voyager.online/tx/your-tx-hash](https://goerli.voyager.online/tx/your-tx-hash)
--   Access a contract with URL  [https://goerli.voyager.online/contract/your-contract-address](https://goerli.voyager.online/contract/your-contract-address)
--   Access read/write functions of the contract with the "read/write contract" tab in voyager
+
+Bir sözleşme/işlem ararken daima Voyager'ın Goerli "testnet" versiyonunda olduğunuzdan emin olun!
+-   İşlemlerinize URL ile erişin [https://goerli.voyager.online/tx/your-tx-hash](https://goerli.voyager.online/tx/your-tx-hash)
+-   URL ile bir sözleşmeye erişin  [https://goerli.voyager.online/contract/your-contract-address](https://goerli.voyager.online/contract/your-contract-address)
+-   Voyager'daki "sözleşmeyi oku/yaz" sekmesi ile sözleşmenin okuma/yazma işlevlerine erişin.
 ​
-### Getting points
+### Puan kazanmak
 ​
 ​
-**Each exercice is a separate smart contract.** It contains code that, when executed properly, will distribute points to your address. Since there is no way currently to send a transaction easily through your account contract, you'll have to specify your address for each call.
+**Her alıştırma ayrı bir akıllı sözleşmedir.** Düzgün yürütüldüğünde puanları adresinize gönderecek bir kod içerir. Şu anda hesap sözleşmenizle kolayca işlem göndermenin bir yolu olmadığından, her egzersiz sonunda puanlarınızı almanız için adresinizi belirtmeniz gerekecek..
 ​
-Points are distributed by the function `distribute_points()` while the function `validate_exercice` records that you completed the exercice (you can get points only once). Your goal is to: 
+Puanlar `distribute_points()` fonksiyonu sayesinde dağıtılacak 'validate_exercice' işlevi, alıştırmayı tamamladığınızı kaydederken (sadece bir kez puan alabilirsiniz). Amacınız:
 
 ![Graph](assets/diagram.png)
 ​
 ​
 ​
-### Checking your progress
+### İlerlemenizi kontrol etme
 ​
-#### Counting your points
+#### Puanlarınızı sayma
 ​
-Your points will get credited in Argent X; though this may take some time. If you want to monitor your points count in real time, you can also see your balance in voyager!
+Puanlarınız Argent X'e aktarılacak; bu biraz zaman alabilir. Puan sayınızı gerçek zamanlı olarak izlemek istiyorsanız, bakiyenizi voyager'da da görebilirsiniz!
 ​
--   Go to the  [ERC20 counter](https://goerli.voyager.online/contract/0x074002c7df47096f490a1a89b086b8a468f2e7c686e04a024d93b7c59f934f83#readContract)  in voyager, in the "read contract" tab
--   Enter your address in the "balanceOf" function
+-   [ERC20 counter](https://goerli.voyager.online/contract/0x074002c7df47096f490a1a89b086b8a468f2e7c686e04a024d93b7c59f934f83#readContract) gidiniz ve  in voyager'da bulunan kontratı oku "read contract" sekmesini seçiniz
+-   "balanceOf" fonksiyonuna cüzdan adresinizi giriniz.
 ​
-#### Transaction status
+#### İşlem durumu
 ​
-You sent a transaction, and it is shown as "undetected" in voyager? This can mean two things:
+Bir işlem gönderdiniz ve voyager'da "tespit edilmedi" olarak mı gösteriliyor? Bu iki anlama gelebilir:
 ​
--   Your transaction is pending, and will be included in a block shortly. It will then be visible in voyager.
--   Your transaction was invalid, and will NOT be included in a block (there is no such thing as a failed transaction in StarkNet).
+-   İşleminiz beklemede ve kısa süre içinde bir bloğa eklenecek. Daha sonra voyager'da görünür olacak. "testnet olduğu için zaman alabilir"
+-   İşleminiz geçersizdi ve bir bloğa EKLENMEYECEK (StarkNet'te başarısız işlem diye bir şey yoktur).
 ​
-You can (and should) check the status of your transaction with the following URL  [https://alpha4.starknet.io/feeder_gateway/get_transaction_receipt?transactionHash=](https://alpha4.starknet.io/feeder_gateway/get_transaction_receipt?transactionHash=)  , where you can append your transaction hash.
+
+İşleminizin durumunu aşağıdaki URL ile kontrol edebilirsiniz (ve yapmalısınız). [https://alpha4.starknet.io/feeder_gateway/get_transaction_receipt?transactionHash=](https://alpha4.starknet.io/feeder_gateway/get_transaction_receipt?transactionHash=)  , işlem hash'inizi ekleyebileceğiniz yer.
 ​
-### Exercises & Contract addresses 
-### Contract addresses 
+### Alıştırmalar ve Sözleşme adresleri.
+### Sözleşme Adresleri
 |Topic|Contract code|Contract on voyager|
 |---|---|---|
 |Points counter ERC20|[Points counter ERC20](contracts/token/TDERC20.cairo)|[Link](https://goerli.voyager.online/contract/0x074002c7df47096f490a1a89b086b8a468f2e7c686e04a024d93b7c59f934f83)|
@@ -102,18 +104,18 @@ You can (and should) check the status of your transaction with the following URL
 
 ​
 ​
-## Contributing
-### Help is welcome!
-This project can be made better, and will evolve in the coming weeks. Your contributions are welcome! Here are things that you can do to help:
-- Correct bugs if you find some
-- Add explanation in the comments of the exercice if you feel it needs more explanation
-- Add exercices showcasing your favorite Cairo feature
+## Katkı
+### Yardıma açığız!
+Bu proje daha iyi hale getirilebilir ve önümüzdeki haftalarda gelişecektir. Katkılarınız için teşekürler! Yardımcı olmak için yapabileceğiniz şeyler şunlardır:
+- Hata bulursanız düzeltiniz
+- Daha fazla açıklamaya ihtiyaç olduğunu düşünüyorsanız, alıştırmanın yorumlarına açıklama ekleyin.
+- En sevdiğiniz Cair özelliğini sergileyen alıştırmalar ekleyin
 ​
-### Reusing this project
-- Clone the repo on your machine
-- Set up the environment following [these instructions](https://starknet.io/docs/quickstart.html#quickstart)
-- Install [Nile](https://github.com/OpenZeppelin/nile).
-- Test that you are able to compile the project
+### Bu projeyi yeniden kullanmak
+- Repoyu makinenizde klonlayın
+- [bu talimatları] izleyerek ortamı kurun(https://starknet.io/docs/quickstart.html#quickstart)
+- Yükleyin [Nile](https://github.com/OpenZeppelin/nile).
+- Projeyi derleyebildiğinizi test edin
 ```
 nile compile
 ```
