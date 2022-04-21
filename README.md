@@ -36,7 +36,7 @@ Sorunuz mu var? Katılın --> [Discord server](https://discord.gg/B7PevJGCCw), k
 ​
 ### Cüzdan kontratı oluşturun.
 **Eğitimi tamamlamak için puan toplamanız gerekiyor.** Bu puanlar, yüklemeniz gereken bir akıllı sözleşme cüzdanına ait olacaktır.
--   Şu an bunu oluşturmanın en kolay yolu Argent X kullanmaktır ([download the chrome extension](https://chrome.google.com/webstore/detail/argent-x-starknet-wallet/dlcobpjiigpikoobohmabehhmhfoodbb/)  veya  [check their repo](https://github.com/argentlabs/argent-x)).
+-   Şu an bunu oluşturmanın en kolay yolu Argent X kullanmaktır ([chrome eklentisini indirin](https://chrome.google.com/webstore/detail/argent-x-starknet-wallet/dlcobpjiigpikoobohmabehhmhfoodbb/)  veya  [check their repo](https://github.com/argentlabs/argent-x)).
 -   Uzantıyı yüklemek ve bir cüzdan sözleşmesi dağıtmak için talimatları izleyin
 -   Goerli testnet network'de olduğunuzdan emin olun.
 -   Eğitimin puanları `0x074002c7df47096f490a1a89b086b8a468f2e7c686e04a024d93b7c59f934f83` sözleşmesinde tutulur. Puan bakiyenizin orada görünmesini sağlamak için Argent X'te "token ekle"ye tıklayın!
