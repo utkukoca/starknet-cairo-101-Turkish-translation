@@ -19,10 +19,10 @@ Alıştırmayı tamamlamak, size token şeklinde kredi verecektir [ERC20 token](
 Bu atölye, sözdizimini anlamak için Cairo kodunu ve StarkNet akıllı sözleşmelerini *okumaya* odaklanır.
 Takip etmek ve tamamlamak için makinenize herhangi bir kod yazmanıza veya herhangi bir şey yüklemenize gerek yoktur.
 ​
-Başlamak (ilk iki alıştırmayı yapmak) öğreticiyi anlamak için biraz zaman alacaktır. Hatta beklemek! Bir kez orada, işler daha kolay akacak. Öğreniyorsun!
+Başlamak (ilk iki alıştırmayı yapmak) öğreticiyi anlamak için biraz zaman alacaktır. Hatta beklemek! Orada, işler daha kolay olacak. Öğreniyorsun!
 ​
-u atölye, geniş akıllı sözleşme kavramlarını (ERC20/ERC721 yazma ve dağıtma, varlıklar arasında köprü oluşturma, L1 <-> L2 mesajlaşma...) kapsayacak bir serinin ilkidir.
-Bunları yazmakla ilgileniyor musunuz?[Reach out](https://twitter.com/HenriLieutaud)!
+Bu atölye, geniş akıllı sözleşme kavramlarını (ERC20/ERC721 yazma ve dağıtma, varlıklar arasında köprü oluşturma, L1 <-> L2 mesajlaşma...) kapsayacak bir serinin ilkidir.
+Bunları yazmakla ilgileniyor musunuz? [Reach out](https://twitter.com/HenriLieutaud)!
 ​
 ### Geri bildirim sağlama
 Bu öğretici üzerinde çalışmayı bitirdikten sonra, geri bildiriminiz çok takdir edilecektir!
