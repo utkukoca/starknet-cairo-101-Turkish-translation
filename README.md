@@ -85,7 +85,7 @@ Bir işlem gönderdiniz ve voyager'da "tespit edilmedi" olarak mı gösteriliyor
 ​
 ### Alıştırmalar ve Sözleşme adresleri.
 ### Sözleşme Adresleri
-|Topic|Contract code|Contract on voyager|
+|Konu|Kontrat kodu|Voyager'da yüklü olan kontrat|
 |---|---|---|
 |Points counter ERC20|[Points counter ERC20](contracts/token/TDERC20.cairo)|[Link](https://goerli.voyager.online/contract/0x074002c7df47096f490a1a89b086b8a468f2e7c686e04a024d93b7c59f934f83)|
 |General syntax|[Ex01](contracts/ex01.cairo)|[Link](https://goerli.voyager.online/contract/0x04b9b3cea3d4b21f7f272a26cf0d54f40348a9d8509f951b217e33d4e9c80af2)|
