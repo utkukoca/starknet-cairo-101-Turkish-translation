@@ -1,14 +1,14 @@
 ######### Ex 01
-## Using a simple public contract function
-# In this exercice, you need to:
-# - Use this contract's claim_points() function
-# - Your points are credited by the contract
+## Basit bir public kontrat fonksiyonu kullanma
+# Bu alıştırmada yapmanız gerekenler:
+# - Bu sözleşmenin request_points() işlevini kullanın
+# - Puanlarınız sözleşme tarafından verilir.
 
-## What you'll learn
-# - General smart contract syntax
-# - Calling a function
+## Ne öğreneceksin
+# - Genel akıllı sözleşme sözdizimi
+# - Bir işlevi çağırmak
 
-######### General directives and imports
+######### Genel yönergeler ve içe aktarmalar
 #
 #
 
@@ -28,7 +28,7 @@ from contracts.utils.ex00_base import (
 
 
 ######### Constructor
-# This function is called when the contract is deployed
+# Bu işlev, sözleşme dağıtıldığında bir seferliğine çağrılır.
 #
 @constructor
 func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
@@ -42,19 +42,19 @@ func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
 end
 
 ######### External functions
-# These functions are callable by other contracts
+# Bu fonksiyonlar başka kontratlar tarafından çağrılabilir
 #
 
-# This function is called claim_points
-# It takes one argument as a parameter (sender_address), which is a felt. Read more about felts here https://www.cairo-lang.org/docs/hello_cairo/intro.html#field-element
-# It also has implicit arguments (syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr). Read more about implicit arguments here https://www.cairo-lang.org/docs/how_cairo_works/builtins.html
+# Bu fonksiyonun adı: claim_points
+# (sender_address) adında bir argüman alabilir, bu veri tipi "felt" dir (integer gibi ama daha farklı). "felt" hakkında daha fazla bilgiyi burada bulabilirsiniz https://www.cairo-lang.org/docs/hello_cairo/intro.html#field-element
+# Ayrıca bazı kesin argümanları var (syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr). daha fazlası burada https://www.cairo-lang.org/docs/how_cairo_works/builtins.html
 @external
 func claim_points{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
-    # Reading caller address
+    # Fonksiyonu çağıran cüzdan adresini okur.
     let (sender_address) = get_caller_address()
-    # Checking if the user has validated the exercice before
+    # Kullanıcının daha önce bu fonksiyonu çağırıp çağrımadığını kontrol eder.
     validate_exercise(sender_address)
-    # Sending points to the address specified as parameter
+    # Girilen adrese puanları "tokenları" gönderir.
     distribute_points(sender_address, 2)
     return ()
 end
