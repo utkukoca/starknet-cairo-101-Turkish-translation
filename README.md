@@ -26,7 +26,7 @@ Bunları yazmakla ilgileniyor musunuz? [Reach out](https://twitter.com/HenriLieu
 ​
 ### Geri bildirim sağlama
 Bu öğretici üzerinde çalışmayı bitirdikten sonra, geri bildiriminiz çok takdir edilecektir!
-**Daha iyi hale getirmek için ne yapacağımızı bilmemiz için lütfen bu formu doldurun [bu formu](https://forms.reform.app/starkware/untitled-form-4/kaes2e).** 
+**Daha iyi hale getirmek için ne yapacağımızı bilmemiz için lütfen [bu formu](https://forms.reform.app/starkware/untitled-form-4/kaes2e) doldurun.** 
 ​
 Ve ilerlemekte zorlanıyorsanız, bize bildirin! Bu eğitimin mümkün olduğu kadar erişilebilir olması amaçlanmıştır;eğer değilse öyle olmadığını bilmek istiyoruz.
 ​
