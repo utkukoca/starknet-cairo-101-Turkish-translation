@@ -1,10 +1,10 @@
 ######### Ex 04
-# Reading a mapping
-# In this exercise, you need to:
-# - Use a function to read a variable
-# - Use a function to read a value in a mapping, where the slot you read is the value from the first call
-# - Use a function to show you know the correct value of the value in the mapping
-# - Your points are credited by the contract
+# Bir eşleştirme(Mapping) okuma
+# Bu alıştırmada şunları yapmanız gerekir:
+# - Bir değişkeni okumak için bir fonksiyon kullanın
+# - Okuduğunuz sıra(SLOT) ilk çağrıdaki değer olduğu bir eşlemede değeri okumak için bir fonksiyon kullanın
+# - Eşlemedeki değerin doğru değerini bildiğinizi göstermek için bir fonksiyon kullanın
+# - Puanlarınız sözleşme tarafından gönderilir.
 
 
 
@@ -24,8 +24,8 @@ from contracts.utils.ex00_base import (
 
 
 #
-# Declaring storage vars
-# Storage vars are by default not visible through the ABI. They are similar to "private" variables in Solidity
+# Depolama değişkenlerinin bildirilmesi
+# Depolama değişkenleri varsayılan olarak ABI aracılığıyla görünmez. Solidity'deki "özel" değişkenlere benzerler
 #
 
 @storage_var
@@ -46,8 +46,8 @@ end
 
 
 #
-# Declaring getters
-# Public variables should be declared explicitly with a getter
+# Alıcıları bildirme
+# Genel değişkenler bir alıcı ile açıkça bildirilmelidir
 #
 
 @view
@@ -82,27 +82,27 @@ end
 
 @external
 func claim_points{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(expected_value: felt):
-    # Reading caller address
+    # Fonksiyonu çağıran cüzdan adresini okur.
     let (sender_address) = get_caller_address()
-    # Checking that the user got a slot assigned
+    # Kullanıcıya bir slot atanıp atanmadığı kontrol ediliyor
     let (user_slot) = user_slots_storage.read(sender_address)
     assert_not_zero(user_slot)
 
-    # Checking that the value provided by the user is the one we expect
-    # Yes, I'm sneaky
+    # Kullanıcı tarafından sağlanan değerin beklediğimiz değer olup olmadığını kontrol etmek
+    # Evet, sinsiyim :)
     let (value) = values_mapped_storage.read(user_slot)
     assert value = expected_value + 32
 
-    # Checking if the user has validated the exercice before
+    # Kullanıcının alıştırmayı daha önce yapıp yapmadığını kontrol etme
     validate_exercise(sender_address)
-    # Sending points to the address specified as parameter
+    # Girilen adrese puanları "tokenları" gönderir.
     distribute_points(sender_address, 2)
     return ()
 end
 
 @external
 func assign_user_slot{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
-    # Reading caller address
+    # Fonksiyonu çağıran cüzdan adresini okur.
     let (sender_address) = get_caller_address()
     let (next_slot_temp) = next_slot.read()
     let (next_value) = values_mapped_storage.read(next_slot_temp + 1)
@@ -118,20 +118,20 @@ end
 
 #
 # External functions - Administration
-# Only admins can call these. You don't need to understand them to finish the exercice.
+# Bunları yalnızca yöneticiler iletişime geçebilir. Egzersizi bitirmek için onları anlamanıza gerek yok.
 #
 
 @external
 func set_random_values{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(values_len: felt, values: felt*):
 
-    # Check if the random values were already initialized
+    # Rastgele değerlerin zaten başlatılıp başlatılmadığını kontrol edin
     let (was_initialized_read) = was_initialized.read()
     assert was_initialized_read = 0
 	
-    # Storing passed values in the store
+    # Depoda geçirilen değerlerin saklanması
     set_a_random_value(values_len, values)
 
-    # Mark that value store was initialized
+    # Değer deposunun başlatıldığını işaretleyin
     was_initialized.write(1)
     return()
 end
