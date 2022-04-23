@@ -1,16 +1,16 @@
 ######### Ex 03
-# Using contract functions to manipulate contract variables
-# In this exercice, you need to:
-# - Use this contract's functions in order to manipulate an internal counter unique to your address
-# - Once this counter reaches a certain value, call a specific function
-# - Your points are credited by the contract
+# Sözleşme değişkenlerini değiştirmek için sözleşme fonksyionlarını kullanma
+# Bu alıştırmada yapmanız gerekenler:
+# - Adresinize özgü dahili bir sayacı değiştirmek için bu sözleşmenin fonksiyonlarını kullanın
+# - Bu sayaç belirli bir değere ulaştığında, belirli bir işlevi çağırın
+# - Puanlarınız sözleşme tarafından gönderilir.
 
-## What you'll learn
-# - How to declare mappings
-# - How to read and write to mappings
-# - How to use a function to manipulate storage variables
+# Ne öğreneceksiniz
+# - Eşlemeler(Mappings) nasıl bildirilir
+# - Eşlemeler nasıl okunur ve yazılır
+# - Depolama değişkenlerini değiştirmek için bir fonksiyon nasıl kullanılır
 
-######### General directives and imports
+######### Genel yönergeler ve içe aktarmalar
 #
 #
 
@@ -30,24 +30,24 @@ from contracts.utils.ex00_base import (
 
 
 #
-# Declaring storage vars
-# Storage vars are by default not visible through the ABI. They are similar to "private" variables in Solidity
+# Depolama değişkenlerinin bildirilmesi
+# Depolama değişkenleri varsayılan olarak ABI aracılığıyla görünmez. Solidity'deki "özel" değişkenlere benzerler
 #
 
-# Declaring a mapping called user_counters_storage. For each 'account' key, which is a felt, we store a value which is a felt also.
+#  Her 'adress' değişkeni 'felt' olan user_counters_storage adında başka bir eşleşme yapıyor.
 @storage_var
 func user_counters_storage(account: felt) -> (user_counters_storage: felt):
 end
 
 #
-# Declaring getters
-# Public variables should be declared explicitly with a getter
+# Alıcıları bildirme
+# Genel değişkenler bir alıcı ile açıkça bildirilmelidir
 #
 
-# Declaring a getter for our mappings. It takes one argument as a parameter, the account you wish to read the counter of
+# Eşlemelerimiz için bir alıcı bildiriyoruz. Sayacını okumak istediğiniz hesap değişken olarak bir parametre alır
 @view
 func user_counters{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(account: felt) -> (user_counter: felt):
-    let (user_counter) = user_counters_storage.read(account)
+    let (user_counter) = user_counters_storage.read(account) 
     return (user_counter)
 end
 
@@ -71,46 +71,46 @@ end
 
 @external
 func claim_points{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
-    # Reading caller address
+    # Fonksiyonu çağıran cüzdan adresini okur.
     let (sender_address) = get_caller_address()
-    # Checking that user's counter is equal to 7
+    # Kullanıcının sayacının 7'ye eşit olması gerektğini belirtir.
     let (current_counter_value) = user_counters_storage.read(sender_address)
     assert current_counter_value = 7
 
-    # Checking if the user has validated the exercice before
+    # Kullanıcının alıştırmayı daha önce yapıp yapmadığını kontrol etme
     validate_exercise(sender_address)
-    # Sending points to the address specified as parameter
+    # Girilen adrese puanları "tokenları" gönderir.
     distribute_points(sender_address, 2)
     return ()
 end
 
 @external
 func reset_counter{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
-    # Reading caller address
+    # Cüzdan adresini okur
     let (sender_address) = get_caller_address()
-    # Reinitializing the user counter
+    # Kullanıcı sayacını yeniden başlatır
     user_counters_storage.write(sender_address, 0)
     return()
 end
 
 @external
 func increment_counter{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
-    # Reading caller address
+    # Cüzdan adresini okur
     let (sender_address) = get_caller_address()
-    # Reading counter from storage
+    # Depolamadan anlık olarak sayacın değerini okur
     let (current_counter_value) = user_counters_storage.read(sender_address)
-    # Writing updated value to storage
+    # Yazan sayı kadar artırır ve depolamayı yeniden düzenler
     user_counters_storage.write(sender_address, current_counter_value+2)
     return()
 end
 
 @external
 func decrement_counter{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
-    # Reading caller address
+    # Cüzdan adresini okur
     let (sender_address) = get_caller_address()
-    # Reading counter from storage
+    # Depolamadan anlık olarak sayacın değerini okur
     let (current_counter_value) = user_counters_storage.read(sender_address)
-    # Writing updated value to storage
+    # Yazan sayı kadar azaltıp yeniden depolamayı günceller
     user_counters_storage.write(sender_address, current_counter_value-1)
     return()
 end
